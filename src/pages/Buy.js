@@ -13,9 +13,6 @@ const BuyPage = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [bankName, setBankName] = useState("");
   const [upiId, setUpiId] = useState("");
-  const [address, setAddress] = useState("");
-  const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
 
   const handleConfirmPurchase = async () => {
     if (!paymentMethod) {
@@ -24,12 +21,7 @@ const BuyPage = () => {
     }
 
     if (paymentMethod === "Cash on Delivery") {
-      if (!name || !address || !phoneNumber) {
-        alert("Please enter your name, address, and phone number.");
-        return;
-      }
-
-      alert("Your order is confirmed! A confirmation message has been sent to your mobile number.");
+      alert("Your order is confirmed!");
       dispatch(clearCart());
       navigate("/");
       return;
@@ -98,29 +90,6 @@ const BuyPage = () => {
               <option value="Net Banking">Net Banking</option>
               <option value="Mobile Banking">Mobile Banking (UPI)</option>
             </select>
-
-            {paymentMethod === "Cash on Delivery" && (
-              <div className="cod-details">
-                <input
-                  type="text"
-                  placeholder="Enter Your Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <input
-                  type="text"
-                  placeholder="Enter Address"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                />
-                <input
-                  type="text"
-                  placeholder="Enter Phone Number"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                />
-              </div>
-            )}
 
             {(paymentMethod === "Mobile Banking" || paymentMethod === "Net Banking") && (
               <div className="bank-details">
