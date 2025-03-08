@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
-import "../styles/Buy.css"; 
+import "../styles/Buy.css";
+
 const BuyPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -12,10 +13,25 @@ const BuyPage = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [bankName, setBankName] = useState("");
   const [upiId, setUpiId] = useState("");
+  const [address, setAddress] = useState("");
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const handleConfirmPurchase = async () => {
     if (!paymentMethod) {
       alert("Please select a payment method.");
+      return;
+    }
+
+    if (paymentMethod === "Cash on Delivery") {
+      if (!name || !address || !phoneNumber) {
+        alert("Please enter your name, address, and phone number.");
+        return;
+      }
+
+      alert("Your order is confirmed! A confirmation message has been sent to your mobile number.");
+      dispatch(clearCart());
+      navigate("/");
       return;
     }
 
@@ -24,12 +40,11 @@ const BuyPage = () => {
       return;
     }
 
-    if (paymentMethod === "Net Banking") {
-      window.location.href = "https://pay.google.com"; 
+    if (paymentMethod === "Net Banking" && !upiId) {
+      alert("Please enter your UPI ID.");
       return;
     }
 
-    
     const paymentData = {
       method: paymentMethod,
       bank: bankName,
@@ -48,7 +63,7 @@ const BuyPage = () => {
       if (!response.ok) throw new Error("Payment failed.");
 
       alert("Payment successful!");
-      dispatch(clearCart()); 
+      dispatch(clearCart());
       navigate("/");
     } catch (error) {
       alert("Payment failed. Please try again.");
@@ -77,45 +92,46 @@ const BuyPage = () => {
 
           <div className="payment-methods">
             <h3>Select Payment Method</h3>
+            <select value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)}>
+              <option value="">Select Payment Method</option>
+              <option value="Cash on Delivery">Cash on Delivery</option>
+              <option value="Net Banking">Net Banking</option>
+              <option value="Mobile Banking">Mobile Banking (UPI)</option>
+            </select>
 
-            <label className="radio-label">
-              <input
-                type="radio"
-                name="payment"
-                value="Cash on Delivery"
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              />
-              Cash on Delivery
-            </label>
-
-            <label className="radio-label">
-              <input
-                type="radio"
-                name="payment"
-                value="Net Banking"
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              />
-              Net Banking (GPay)
-            </label>
-
-            <label className="radio-label">
-              <input
-                type="radio"
-                name="payment"
-                value="Mobile Banking"
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              />
-              Mobile Banking (UPI)
-            </label>
-
-            {paymentMethod === "Mobile Banking" && (
-              <div className="bank-details">
+            {paymentMethod === "Cash on Delivery" && (
+              <div className="cod-details">
                 <input
                   type="text"
-                  placeholder="Enter Bank Name"
-                  value={bankName}
-                  onChange={(e) => setBankName(e.target.value)}
+                  placeholder="Enter Your Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
+                <input
+                  type="text"
+                  placeholder="Enter Address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+                <input
+                  type="text"
+                  placeholder="Enter Phone Number"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                />
+              </div>
+            )}
+
+            {(paymentMethod === "Mobile Banking" || paymentMethod === "Net Banking") && (
+              <div className="bank-details">
+                {paymentMethod === "Mobile Banking" && (
+                  <input
+                    type="text"
+                    placeholder="Enter Bank Name"
+                    value={bankName}
+                    onChange={(e) => setBankName(e.target.value)}
+                  />
+                )}
                 <input
                   type="text"
                   placeholder="Enter UPI ID"
