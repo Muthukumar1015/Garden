@@ -1,0 +1,154 @@
+.register-container {
+  max-width: 380px;
+  margin: auto;
+  padding: 25px;
+  text-align: center;
+  background-image: url('../assets/login1.jpg');
+  border-radius: 10px;
+  box-shadow: 0px 6px 15px rgba(139, 123, 123, 0.477);
+  margin-top: 130px;
+  transition: all 0.3s ease-in-out;
+}
+
+h2 {
+  margin-bottom: 15px;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #b45f42;
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(180, 95, 66, 0.5);
+}
+
+
+.otp-button {
+  background-color: #b45f42;
+  color: white;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.otp-button:hover {
+  background-color: #333;       
+}
+
+.otp-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+.register-button {
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  padding: 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.register-button:hover {
+  background-color: #333;
+}
+
+
+.home-button {
+  background-color: #2b7a3a;
+  color: white;
+  padding: 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  width: 100%;
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.home-button:hover {
+  background-color: #333;
+}
+
+
+.back-home-button {
+  background-color: #4a4a4a;
+  color: white;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  width: 100%;
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.back-home-button:hover {
+  background-color: #333;
+}
+
+
+.message {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.message.error {
+  color: red;
+}
+
+.message.success {
+  color: green;
+}
+
+
+@media (max-width: 480px) {
+  .register-container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .otp-button,
+  .register-button,
+  .home-button,
+  .back-home-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

@@ -1,0 +1,67 @@
+.buy-container {
+   max-width: 500px;
+   margin: 20px auto;
+   padding: 20px;
+   border: 1px solid #ddd;
+   border-radius: 10px;
+   background-color: #f9f9f9;
+   text-align: center;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   margin-top: 150px;
+ }
+ 
+ .order-summary {
+   margin-bottom: 20px;
+ }
+ 
+ ul {
+   list-style: none;
+   padding: 0;
+ }
+ 
+ li {
+   margin: 5px 0;
+   font-weight: bold;
+ }
+ 
+ .payment-methods {
+   margin-bottom: 20px;
+   text-align: left;
+ }
+ 
+ .payment-methods label {
+   display: block;
+   margin: 5px 0;
+   font-weight: bold;
+ }
+ 
+ .bank-details {
+   margin-top: 10px;
+   text-align: left;
+ }
+ 
+ .bank-details input {
+   width: 100%;
+   padding: 8px;
+   margin: 5px 0;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+ }
+ 
+ .confirm-btn {
+   padding: 10px 15px;
+   border: none;
+   border-radius: 5px;
+   background-color: #28a745;
+   color: white;
+   font-size: 16px;
+   cursor: pointer;
+   width: 100%;
+ }
+ 
+ .confirm-btn:hover {
+   background-color: #218838;
+ }
+ 
+
+ 
