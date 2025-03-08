@@ -1,4 +1,12 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+/* Home Section */
 .home-container {
   display: flex;
   align-items: center;
@@ -23,7 +31,6 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
 }
-
 
 .content {
   position: relative;
@@ -54,14 +61,15 @@
   background-color: #d8a79a;
 }
 
+/* Card Section */
 .card-section {
   display: flex;
   justify-content: center;
   gap: 30px;
   padding: 50px 20px;
   background-color: #f5f5f5;
+  flex-wrap: wrap;
 }
-
 
 .card {
   background-color: white;
@@ -77,7 +85,6 @@
   transform: translateY(-5px);
 }
 
-
 .card-title {
   font-size: 18px;
   font-weight: bold;
@@ -86,7 +93,6 @@
   margin-bottom: 5px;
 }
 
-
 .underline {
   width: 30px;
   height: 2px;
@@ -94,7 +100,14 @@
   margin: 5px auto 15px;
 }
 
+.card-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 10px;
+}
 
+/* About Section */
 .about-section {
   display: flex;
   align-items: center;
@@ -124,7 +137,6 @@
   margin-bottom: 10px;
 }
 
-
 .about-image {
   flex: 1;
 }
@@ -135,8 +147,7 @@
   border-radius: 8px;
 }
 
-
-
+/* Offer Section */
 .offer-section {
   display: flex;
   align-items: center;
@@ -168,22 +179,7 @@
   margin-bottom: 20px;
 }
 
-.shop-button {
-  background-color: white;
-  color: #002b23;
-  padding: 12px 24px;
-  border-radius: 4px;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s ease-in-out;
-}
-
-.shop-button:hover {
- color: #002b23;
-}
-
-
+/* Contact Section */
 .contact-section {
   text-align: center;
   padding: 50px;
@@ -196,14 +192,6 @@
   color: #333;
   text-transform: uppercase;
 }
-
-.underline {
-  width: 50px;
-  height: 2px;
-  background-color: #7a4a3a;
-  margin: 10px auto 20px;
-}
-
 
 .contact-form {
   max-width: 600px;
@@ -235,7 +223,6 @@ textarea {
   resize: none;
 }
 
-
 .send-button {
   background-color: #b45f42;
   color: white;
@@ -251,8 +238,7 @@ textarea {
   background-color: #9a4e38;
 }
 
-
-
+/* Footer */
 .footer {
   background-color: #002b23;
   color: white;
@@ -292,44 +278,7 @@ textarea {
   color: #b45f42;
 }
 
-
-.subscribe-section {
-  text-align: center;
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.subscribe-checkbox {
-  margin-bottom: 10px;
-  font-size: 14px;
-}
-
-.subscribe-input {
-  width: 250px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  margin-bottom: 10px; 
-}
-
-.subscribe-button {
-  background-color: white;
-  color: #002b23;
-  padding: 10px 15px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  transition: background 0.3s ease-in-out;
-}
-
-.subscribe-button:hover {
-  background-color: #ccc;
-}
-
-
-
+/* Social Icons */
 .social-icons {
   display: flex;
   justify-content: center;
@@ -345,4 +294,40 @@ textarea {
 
 .social-icons a:hover {
   color: #b45f42;
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+  .card-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .card {
+    width: 90%;
+    max-width: 350px;
+  }
+
+  .about-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-text {
+    padding-right: 0;
+  }
+
+  .offer-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .offer-text {
+    padding: 20px;
+  }
+
+  .form-group {
+    flex-direction: column;
+  }
 }
