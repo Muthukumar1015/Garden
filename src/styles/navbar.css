@@ -29,6 +29,7 @@
   color: black;
 }
 
+/* ===== Search Bar ===== */
 .search-bar {
   display: flex;
   align-items: center;
@@ -47,43 +48,24 @@
   padding: 3px;
 }
 
-.search-icon {
-  color: #5a5455;
+.search-button {
+  background: transparent;
+  border: none;
   cursor: pointer;
-  margin-left: 5px;
+  font-size: 16px;
+  color: #5a5455;
   transition: color 0.3s ease-in-out;
 }
 
-.search-icon:hover {
+.search-button:hover {
   color: #ff4d6d;
 }
 
+/* ===== Right Section: Auth Links & Cart ===== */
 .nav-right {
   display: flex;
   align-items: center;
   gap: 15px;
-}
-
-.cart-container {
-  position: relative;
-  cursor: pointer;
-}
-
-.cart-icon {
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.cart-badge {
-  position: absolute;
-  top: -6px;
-  right: -8px;
-  background: #ff4d6d;
-  color: white;
-  font-size: 10px;
-  font-weight: bold;
-  padding: 3px 6px;
-  border-radius: 50%;
 }
 
 .auth-links a {
@@ -98,7 +80,29 @@
   color: #ff4d6d;
 }
 
-/* ===== Bottom Navbar (Category Links) ===== */
+.cart-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.cart-icon {
+  font-size: 20px;
+  color: black;
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #ff4d6d;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 3px 6px;
+  border-radius: 50%;
+}
+
+/* ===== Bottom Navigation ===== */
 .nav-bottom {
   display: flex;
   justify-content: center;
@@ -113,10 +117,6 @@
   list-style: none;
   padding: 0;
   margin: 0;
-}
-
-.nav-links li {
-  position: relative;
 }
 
 .nav-links a,
@@ -137,6 +137,65 @@
   color: #ff4d6d;
 }
 
+/* ===== Mobile Menu Toggle (Visible Only on Mobile) ===== */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .nav-top {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+  }
+
+  .search-bar {
+    width: 200px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-bottom {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: white;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    z-index: 999;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-bottom.open {
+    display: flex;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 15px 0;
+  }
+}
+
+/* ===== Desktop View: Ensure Menu is Always Visible & Hide Toggle ===== */
+@media (min-width: 769px) {
+  .nav-bottom {
+    display: flex !important;
+  }
+
+  .menu-toggle {
+    display: none !important;
+  }
+}
+
 /* ===== Cart Sidebar ===== */
 .cart-sidebar {
   position: fixed;
@@ -155,6 +214,7 @@
   right: 0;
 }
 
+/* Cart Header */
 .cart-header {
   display: flex;
   justify-content: space-between;
@@ -175,6 +235,7 @@
   color: #ff4d6d;
 }
 
+/* Cart Content */
 .cart-content {
   padding: 15px 0;
   font-size: 1rem;
@@ -183,6 +244,7 @@
   overflow-y: auto;
 }
 
+/* Cart Items */
 .cart-item {
   display: flex;
   justify-content: space-between;
@@ -196,44 +258,50 @@
   font-size: 14px;
 }
 
-.cart-item .remove-icon {
+.cart-item .delete-icon {
   color: red;
   font-size: 16px;
   cursor: pointer;
   transition: color 0.3s ease-in-out;
 }
 
-.cart-item .remove-icon:hover {
+.cart-item .delete-icon:hover {
   color: darkred;
 }
 
-/* ===== Responsive Design ===== */
-@media screen and (max-width: 768px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
-  }
-
-  .nav-links.open {
-    display: flex;
-  }
-
-  .mobile-menu-icon {
-    display: block;
-    cursor: pointer;
-    font-size: 24px;
-  }
+/* Cart Summary */
+.cart-summary {
+  text-align: center;
+  padding-top: 15px;
 }
 
-@media screen and (min-width: 769px) {
-  .mobile-menu-icon {
-    display: none;
-  }
+.cart-summary h4 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.cart-summary button {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
+}
+
+.cart-summary button:hover {
+  background: #218838;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 999;
 }

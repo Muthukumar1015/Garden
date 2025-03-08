@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { FaShoppingCart, FaSearch, FaTimes, FaTrash, FaBars } from "react-icons/fa";
+import { FaShoppingCart, FaSearch, FaTimes, FaTrash } from "react-icons/fa";
 import { removeFromCart, clearCart } from "../redux/cartSlice";
 import "../styles/navbar.css";
 
@@ -12,7 +12,6 @@ const Navbar = ({ scrollToContact, scrollToAbout }) => {
    const navbarHeight = 50;
 
    const [isCartOpen, setIsCartOpen] = useState(false);
-   const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
    const [searchQuery, setSearchQuery] = useState("");
 
    const cartItems = useSelector((state) => state.cart.items) || [];
@@ -39,7 +38,6 @@ const Navbar = ({ scrollToContact, scrollToAbout }) => {
    }, [location, scrollToContact, scrollToAbout, navbarHeight]);
 
    const handleNavigation = (target) => {
-      setIsMenuOpen(false); // Close menu on navigation
       if (location.pathname !== "/") {
          navigate("/", { state: { scrollTo: target } });
       } else {
@@ -96,22 +94,16 @@ const Navbar = ({ scrollToContact, scrollToAbout }) => {
                      <span className="cart-count">{totalQuantity}</span>
                   )}
                </div>
-
-               {/* Hamburger Menu Icon */}
-               <div className="mobile-menu-icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                  {isMenuOpen ? <FaTimes /> : <FaBars />}
-               </div>
             </div>
          </div>
 
-         {/* Mobile Navigation Menu */}
-         <div className={`nav-bottom ${isMenuOpen ? "open" : ""}`}>
-            <ul className={`nav-links ${isMenuOpen ? "open" : ""}`}>
+         <div className="nav-bottom">
+            <ul className="nav-links">
                <li>
-                  <a href="/faq" onClick={() => setIsMenuOpen(false)}>FAQ</a>
+                  <a href="/faq">FAQ</a>
                </li>
                <li>
-                  <a href="/shop" onClick={() => setIsMenuOpen(false)}>Shop</a>
+                  <a href="/shop">Shop</a>
                </li>
                <li>
                   <button
@@ -130,6 +122,49 @@ const Navbar = ({ scrollToContact, scrollToAbout }) => {
                   </button>
                </li>
             </ul>
+         </div>
+
+         <div className={`cart-sidebar ${isCartOpen ? "open" : ""}`}>
+            <div className="cart-header">
+               <h3>Shopping Cart</h3>
+               <FaTimes
+                  className="close-icon"
+                  onClick={() => setIsCartOpen(false)}
+               />
+            </div>
+
+            <div className="cart-content">
+               {cartItems.length === 0 ? (
+                  <p>Cart is empty</p>
+               ) : (
+                  <>
+                     {cartItems.map((item) => (
+                        <div className="cart-item" key={item.id}>
+                           <p>{item.name}</p>
+                           <p>Quantity: {item.quantity}</p>
+                           <p>Price: ₹{item.price * item.quantity}</p>
+                           <FaTrash
+                              className="delete-icon"
+                              onClick={() => dispatch(removeFromCart(item.id))}
+                           />
+                        </div>
+                     ))}
+                     <div className="cart-summary">
+                        <h4>Total Unique Items: {totalUniqueItems}</h4>
+                        <h4>Total Quantity: {totalQuantity}</h4>
+                        <h4>Total Amount: ₹{totalPrice}</h4>
+
+                        {/* Updated Buy Now Button */}
+                        <button onClick={() => navigate("/buy")}>
+                           Buy Now
+                        </button>
+                        <button onClick={() => dispatch(clearCart())}>
+                           Clear Cart
+                        </button>
+                     </div>
+                  </>
+               )}
+            </div>
          </div>
 
          {isCartOpen && (
